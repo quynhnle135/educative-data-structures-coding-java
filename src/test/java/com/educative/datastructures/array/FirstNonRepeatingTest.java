@@ -3,7 +3,7 @@ package com.educative.datastructures.array;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-public class TestFirstNonRepeating {
+public class FirstNonRepeatingTest {
     @Test
     public void testFirstNonRepeating() {
         int[] arr = {9, 2, 3, 2, 6, 6};
@@ -11,6 +11,7 @@ public class TestFirstNonRepeating {
         int expected = 9;
         Assertions.assertTrue(actual == expected);
     }
+
     @Test
     public void testFirstNonRepeatingNegative() {
         int[] arr = {-9, -2, -3, -2, -6, -6};
@@ -18,6 +19,7 @@ public class TestFirstNonRepeating {
         int expected = -9;
         Assertions.assertTrue(actual == expected);
     }
+
     @Test
     public void testFirstNonRepeatingMix() {
         int[] arr = {-9, -2, 3, 2, 6, 6};

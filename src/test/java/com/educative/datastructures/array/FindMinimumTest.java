@@ -3,7 +3,7 @@ package com.educative.datastructures.array;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-public class TestFindMinimum {
+public class FindMinimumTest {
     @Test
     public void testFindMinimum() {
         int[] array = {9, 2, 3, 6};

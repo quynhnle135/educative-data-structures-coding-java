@@ -3,7 +3,7 @@ package com.educative.datastructures.array;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-public class TestSecondMaximum {
+public class SecondMaximumTest {
     @Test
     public void testSecondMaximum() {
         int[] arr = {9, 2, 3, 6};
