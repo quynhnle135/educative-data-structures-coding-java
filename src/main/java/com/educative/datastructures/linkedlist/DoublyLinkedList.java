@@ -128,6 +128,16 @@ public class DoublyLinkedList<T> {
         size--;
     }
 
+    public int length() {
+        Node currentNode = headNode;
+        int count = 0;
+        while (currentNode != null) {
+            count++;
+            currentNode = currentNode.nextNode;
+        }
+        return count;
+    }
+
     public static void main(String[] args) {
         DoublyLinkedList<Integer> list = new DoublyLinkedList<>();
         for (int i = 1; i <= 5; i++) {
@@ -139,5 +149,7 @@ public class DoublyLinkedList<T> {
         list.printList();
         list.deleteAtTail();
         list.printList();
+        System.out.println(list.length());
+        System.out.println(list.size);
     }
 }
