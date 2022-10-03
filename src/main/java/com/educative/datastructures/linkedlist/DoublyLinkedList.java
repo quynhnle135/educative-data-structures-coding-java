@@ -17,11 +17,12 @@ public class DoublyLinkedList<T> {
         this.size = 0;
     }
 
-    // getter for headnode
+    // getter for headNode
     public Node getHeadNode() {
         return headNode;
     }
 
+    // getter for tailNode
     public Node getTailNode() {
         return tailNode;
     }
@@ -31,7 +32,7 @@ public class DoublyLinkedList<T> {
     }
 
     public boolean isEmpty() {
-        if (headNode == null) {
+        if (headNode == null && tailNode == null) {
             return true;
         }
         return false;
@@ -40,12 +41,28 @@ public class DoublyLinkedList<T> {
     public void insertAtHead(T data) {
         Node newNode = new Node();
         newNode.data = data;
-        newNode.nextNode = this.headNode;
-        newNode.prevNode = null;
-        if (headNode != null) {
+        newNode.nextNode = this.headNode; //Linking newNode to head's nextNode
+        newNode.prevNode = null; //it will be inserted at start so prevNode will be null
+        if (!isEmpty())
             headNode.prevNode = newNode;
-        }
+        else
+            tailNode = newNode;
         this.headNode = newNode;
+        size++;
+    }
+
+    public void insertAtEnd(T data) {
+        if (isEmpty()) { //if list is empty then insert at head
+            insertAtHead(data);
+            return;
+        }
+        //make a new node and assign it the value to be inserted
+        Node newNode = new Node();
+        newNode.data = data;
+        newNode.nextNode = null; //it will be inserted at end so nextNode will be null
+        newNode.prevNode = tailNode; //newNode comes after tailNode so its prevNode will be tailNode
+        tailNode.nextNode = newNode; //make newNode the nextNode of tailNode
+        tailNode = newNode; //update tailNode to be the newNode
         size++;
     }
 
@@ -55,7 +72,7 @@ public class DoublyLinkedList<T> {
             return;
         }
         Node temp = headNode;
-        System.out.print("<- null ");
+        System.out.print("null <-");
         while (temp.nextNode != null) {
             System.out.print(temp.data.toString() + " <-> ");
             temp = temp.nextNode;
@@ -69,7 +86,11 @@ public class DoublyLinkedList<T> {
             return;
         }
         headNode = headNode.nextNode;
-        headNode.prevNode = null;
+        if (headNode == null) {
+            tailNode = null;
+        } else {
+            headNode.prevNode = null;
+        }
         size--;
     }
 
@@ -94,11 +115,29 @@ public class DoublyLinkedList<T> {
         }
     }
 
+    public void deleteAtTail() {
+        if (isEmpty()) {
+            return;
+        }
+        tailNode = tailNode.prevNode;
+        if (tailNode == null) {
+            headNode = null;
+        } else {
+            tailNode.nextNode = null;
+        }
+        size--;
+    }
+
     public static void main(String[] args) {
         DoublyLinkedList<Integer> list = new DoublyLinkedList<>();
         for (int i = 1; i <= 5; i++) {
             list.insertAtHead(i);
         }
+        list.printList();
+        list.insertAtHead(17);
+        list.insertAtEnd(20);
+        list.printList();
+        list.deleteAtTail();
         list.printList();
     }
 }
