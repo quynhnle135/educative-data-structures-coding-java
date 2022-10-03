@@ -88,6 +88,14 @@ public class SinglyLinkedList<T> {
         System.out.println(temp.data.toString() + " -> null");
     }
 
+    public void deleteAtHead() {
+        if (isEmpty()) {
+            return;
+        }
+        headNode = headNode.nextNode;
+        size--;
+    }
+
     public static void main(String[] args) {
         SinglyLinkedList<Integer> list = new SinglyLinkedList<>();
         for (int i = 1; i <= 10; i++) {
@@ -97,6 +105,8 @@ public class SinglyLinkedList<T> {
         System.out.println(list.searchNode(8)); // true
         System.out.println(list.searchNode(11)); // false
         list.insertAfter(17, 7);
+        list.printList();
+        list.deleteAtHead();
         list.printList();
     }
 }
