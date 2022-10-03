@@ -1,5 +1,7 @@
 package com.educative.datastructures.linkedlist;
 
+import java.util.LinkedList;
+
 public class SinglyLinkedList<T> {
 
     class Node {
@@ -59,5 +61,42 @@ public class SinglyLinkedList<T> {
             currentNode.nextNode = newNode;
             size++;
         }
+    }
+
+    public boolean searchNode(T data) {
+        Node currentNode = this.headNode;
+        while (currentNode != null) {
+            if (currentNode.data.equals(data)) {
+                return true;
+            }
+            currentNode = currentNode.nextNode;
+        }
+        return false;
+    }
+
+    public void printList() {
+        if (isEmpty()) {
+            System.out.println("List is empty");
+            return;
+        }
+        Node temp = headNode;
+        System.out.println("List: ");
+        while (temp.nextNode != null) {
+            System.out.print(temp.data.toString() + " -> ");
+            temp = temp.nextNode;
+        }
+        System.out.println(temp.data.toString() + " -> null");
+    }
+
+    public static void main(String[] args) {
+        SinglyLinkedList<Integer> list = new SinglyLinkedList<>();
+        for (int i = 1; i <= 10; i++) {
+            list.insertAtEnd(i);
+        }
+        list.printList();
+        System.out.println(list.searchNode(8)); // true
+        System.out.println(list.searchNode(11)); // false
+        list.insertAfter(17, 7);
+        list.printList();
     }
 }
