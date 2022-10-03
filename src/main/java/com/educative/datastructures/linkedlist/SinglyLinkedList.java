@@ -96,6 +96,28 @@ public class SinglyLinkedList<T> {
         size--;
     }
 
+    public void deleteByValue(T data) {
+        if (isEmpty()) {
+            return;
+        }
+        Node currentNode = this.headNode;
+        Node prevNode = null;
+        if (currentNode.data.equals(data)) {
+            deleteAtHead();
+            return;
+        }
+        while (currentNode != null) {
+            if (data.equals(currentNode.data)) {
+                prevNode.nextNode = currentNode.nextNode;
+                size--;
+                return;
+            }
+            prevNode = currentNode;
+            currentNode = currentNode.nextNode;
+        }
+
+    }
+
     public static void main(String[] args) {
         SinglyLinkedList<Integer> list = new SinglyLinkedList<>();
         for (int i = 1; i <= 10; i++) {
@@ -107,6 +129,8 @@ public class SinglyLinkedList<T> {
         list.insertAfter(17, 7);
         list.printList();
         list.deleteAtHead();
+        list.printList();
+        list.deleteByValue(17);
         list.printList();
     }
 }
