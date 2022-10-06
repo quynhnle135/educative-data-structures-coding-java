@@ -39,13 +39,12 @@ public class DoublyLinkedList<T> {
     public void insertAtHead(T data) {
         Node newNode = new Node();
         newNode.data = data;
-        newNode.nextNode = this.headNode;
+        newNode.nextNode = this.headNode; //Linking newNode to head's nextNode
         newNode.prevNode = null;
-        if (!isEmpty()) {
+        if (headNode != null)
             headNode.prevNode = newNode;
-        } else {
+        else
             tailNode = newNode;
-        }
         this.headNode = newNode;
         size++;
     }
@@ -55,11 +54,11 @@ public class DoublyLinkedList<T> {
             insertAtHead(data);
             return;
         }
-
         Node newNode = new Node();
         newNode.data = data;
         newNode.nextNode = null;
         newNode.prevNode = tailNode;
+        tailNode.nextNode = newNode;
         tailNode = newNode;
         size++;
     }
@@ -70,13 +69,13 @@ public class DoublyLinkedList<T> {
             return;
         }
         Node tempNode = headNode;
-        System.out.print("List: <- null -> ");
+        System.out.print("List: null <- ");
         while (tempNode.nextNode != null) {
             System.out.print(tempNode.data.toString() + " <-> ");
             tempNode = tempNode.nextNode;
         }
-        System.out.print(tempNode.data.toString() + " -> null");
-        System.out.println();
+        System.out.println(tempNode.data.toString() + " -> null");
+
     }
 
     public void deleteAtHead() {
