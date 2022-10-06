@@ -3,8 +3,7 @@ package com.educative.datastructures.linkedlist;
 import java.util.LinkedList;
 
 public class SinglyLinkedList<T> {
-
-    class Node {
+    public class Node {
         public T data;
         public Node nextNode;
     }
@@ -12,7 +11,6 @@ public class SinglyLinkedList<T> {
     public Node headNode;
     public int size;
 
-    // constructor
     public SinglyLinkedList() {
         headNode = null;
         size = 0;
@@ -42,6 +40,7 @@ public class SinglyLinkedList<T> {
         newNode.data = data;
         newNode.nextNode = null;
         Node last = headNode;
+
         while (last.nextNode != null) {
             last = last.nextNode;
         }
@@ -64,7 +63,7 @@ public class SinglyLinkedList<T> {
     }
 
     public boolean searchNode(T data) {
-        Node currentNode = this.headNode;
+        Node currentNode = headNode;
         while (currentNode != null) {
             if (currentNode.data.equals(data)) {
                 return true;
@@ -72,20 +71,6 @@ public class SinglyLinkedList<T> {
             currentNode = currentNode.nextNode;
         }
         return false;
-    }
-
-    public void printList() {
-        if (isEmpty()) {
-            System.out.println("List is empty");
-            return;
-        }
-        Node temp = headNode;
-        System.out.println("List: ");
-        while (temp.nextNode != null) {
-            System.out.print(temp.data.toString() + " -> ");
-            temp = temp.nextNode;
-        }
-        System.out.println(temp.data.toString() + " -> null");
     }
 
     public void deleteAtHead() {
@@ -107,7 +92,7 @@ public class SinglyLinkedList<T> {
             return;
         }
         while (currentNode != null) {
-            if (data.equals(currentNode.data)) {
+            if (currentNode.data.equals(data)) {
                 prevNode.nextNode = currentNode.nextNode;
                 size--;
                 return;
@@ -115,7 +100,20 @@ public class SinglyLinkedList<T> {
             prevNode = currentNode;
             currentNode = currentNode.nextNode;
         }
+    }
 
+    public void printList() {
+        if (isEmpty()) {
+            System.out.println("List is empty");
+            return;
+        }
+        Node temp = headNode;
+        System.out.println("List: ");
+        while (temp.nextNode != null) {
+            System.out.print(temp.data + " -> ");
+            temp = temp.nextNode;
+        }
+        System.out.println(temp.data.toString() + " -> null");
     }
 
     public static void main(String[] args) {
