@@ -1,5 +1,6 @@
 package com.educative.datastructures.linkedlist;
 
+import java.util.HashSet;
 import java.util.LinkedList;
 
 public class SinglyLinkedList<T> {
@@ -11,6 +12,7 @@ public class SinglyLinkedList<T> {
     public Node headNode;
     public int size;
 
+    // constructor
     public SinglyLinkedList() {
         headNode = null;
         size = 0;
@@ -81,6 +83,20 @@ public class SinglyLinkedList<T> {
         size--;
     }
 
+    public void deleteAtEnd() {
+        if (isEmpty()) {
+            return;
+        }
+        Node prevNode = this.headNode;
+        Node currentNode = prevNode.nextNode;
+        while (currentNode.nextNode != null) {
+            prevNode = currentNode;
+            currentNode = currentNode.nextNode;
+        }
+        prevNode.nextNode = null;
+        size--;
+    }
+
     public void deleteByValue(T data) {
         if (isEmpty()) {
             return;
@@ -114,6 +130,41 @@ public class SinglyLinkedList<T> {
             temp = temp.nextNode;
         }
         System.out.println(temp.data.toString() + " -> null");
+    }
+
+    public void setHeadNode(Node headNode) {
+        this.headNode = headNode;
+    }
+
+    public Node getHeadNode() {
+        return headNode;
+    }
+
+    public int getSize() {
+        return size;
+    }
+
+    public void setSize(int size) {
+        this.size = size;
+    }
+
+    public void removeDuplicateHashing() {
+        Node current = this.headNode;
+        Node prevNode = this.headNode;
+
+        HashSet<T> visitedNodes = new HashSet<>();
+        if (!isEmpty() && current.nextNode != null) {
+            while (current != null) {
+                if (visitedNodes.contains(current.data)) {
+                    prevNode.nextNode = current.nextNode;
+                    current = current.nextNode;
+                } else {
+                    visitedNodes.add(current.data);
+                    prevNode = current;
+                    current = current.nextNode;
+                }
+            }
+        }
     }
 
     public static void main(String[] args) {
