@@ -70,12 +70,13 @@ public class DoublyLinkedList<T> {
             return;
         }
         Node tempNode = headNode;
-        System.out.println("List: <- null -> ");
+        System.out.print("List: <- null -> ");
         while (tempNode.nextNode != null) {
             System.out.print(tempNode.data.toString() + " <-> ");
             tempNode = tempNode.nextNode;
         }
         System.out.print(tempNode.data.toString() + " -> null");
+        System.out.println();
     }
 
     public void deleteAtHead() {
@@ -125,6 +126,16 @@ public class DoublyLinkedList<T> {
             }
             currentNode = currentNode.nextNode;
         }
+    }
+
+    public int length() {
+        Node currentNode = this.headNode;
+        int count = 0;
+        while (currentNode != null) {
+            count++;
+            currentNode = currentNode.nextNode;
+        }
+        return count;
     }
 
     public static void main(String[] args) {
