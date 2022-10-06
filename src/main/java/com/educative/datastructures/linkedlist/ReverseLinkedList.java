@@ -1,5 +1,7 @@
 package com.educative.datastructures.linkedlist;
 
+import java.lang.annotation.Native;
+
 public class ReverseLinkedList {
     public static <T> void reverse(SinglyLinkedList<T> list) {
         SinglyLinkedList<T>.Node previous = null;
@@ -16,6 +18,10 @@ public class ReverseLinkedList {
     }
 
     public static void main(String[] args) {
-        
+        SinglyLinkedList<Integer> list = new SinglyLinkedList<>();
+        for (int i = 10; i >= 1; i--) {
+            list.insertAtHead(i);
+        }
+        list.printList();
     }
 }
