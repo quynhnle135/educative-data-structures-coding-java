@@ -17,12 +17,17 @@ public class DoublyLinkedList<T> {
         this.size = 0;
     }
 
-    // getter for headNode
+    public boolean isEmpty() {
+        if (headNode == null && tailNode == null) {
+            return true;
+        }
+        return false;
+    }
+
     public Node getHeadNode() {
         return headNode;
     }
 
-    // getter for tailNode
     public Node getTailNode() {
         return tailNode;
     }
@@ -31,38 +36,31 @@ public class DoublyLinkedList<T> {
         return size;
     }
 
-    public boolean isEmpty() {
-        if (headNode == null && tailNode == null) {
-            return true;
-        }
-        return false;
-    }
-
     public void insertAtHead(T data) {
         Node newNode = new Node();
         newNode.data = data;
-        newNode.nextNode = this.headNode; //Linking newNode to head's nextNode
-        newNode.prevNode = null; //it will be inserted at start so prevNode will be null
-        if (!isEmpty())
+        newNode.nextNode = this.headNode;
+        newNode.prevNode = null;
+        if (!isEmpty()) {
             headNode.prevNode = newNode;
-        else
+        } else {
             tailNode = newNode;
+        }
         this.headNode = newNode;
         size++;
     }
 
     public void insertAtEnd(T data) {
-        if (isEmpty()) { //if list is empty then insert at head
+        if (isEmpty()) {
             insertAtHead(data);
             return;
         }
-        //make a new node and assign it the value to be inserted
+
         Node newNode = new Node();
         newNode.data = data;
-        newNode.nextNode = null; //it will be inserted at end so nextNode will be null
-        newNode.prevNode = tailNode; //newNode comes after tailNode so its prevNode will be tailNode
-        tailNode.nextNode = newNode; //make newNode the nextNode of tailNode
-        tailNode = newNode; //update tailNode to be the newNode
+        newNode.nextNode = null;
+        newNode.prevNode = tailNode;
+        tailNode = newNode;
         size++;
     }
 
@@ -71,14 +69,13 @@ public class DoublyLinkedList<T> {
             System.out.println("List is empty");
             return;
         }
-        Node temp = headNode;
-        System.out.print("null <-");
-        while (temp.nextNode != null) {
-            System.out.print(temp.data.toString() + " <-> ");
-            temp = temp.nextNode;
+        Node tempNode = headNode;
+        System.out.println("List: <- null -> ");
+        while (tempNode.nextNode != null) {
+            System.out.print(tempNode.data.toString() + " <-> ");
+            tempNode = tempNode.nextNode;
         }
-        System.out.println(temp.data.toString() + " -> null");
-
+        System.out.print(tempNode.data.toString() + " -> null");
     }
 
     public void deleteAtHead() {
@@ -94,27 +91,6 @@ public class DoublyLinkedList<T> {
         size--;
     }
 
-    public void deleteByValue(T data) {
-        if (isEmpty()) {
-            return;
-        }
-        Node currentNode = this.headNode;
-        if (currentNode.data.equals(data)) {
-            deleteAtHead();
-            return;
-        }
-        while (currentNode != null) {
-            if (data.equals(currentNode.data)) {
-                currentNode.prevNode.nextNode = currentNode.nextNode;
-                if (currentNode.nextNode != null) {
-                    currentNode.nextNode.prevNode = currentNode.prevNode;
-                }
-                size--;
-            }
-            currentNode = currentNode.nextNode;
-        }
-    }
-
     public void deleteAtTail() {
         if (isEmpty()) {
             return;
@@ -128,14 +104,27 @@ public class DoublyLinkedList<T> {
         size--;
     }
 
-    public int length() {
-        Node currentNode = headNode;
-        int count = 0;
+    public void deleteByValue(T data) {
+        if (isEmpty()) {
+            return;
+        }
+
+        Node currentNode = this.headNode;
+        if (currentNode.data.equals(data)) {
+            deleteAtHead();
+            return;
+        }
+
         while (currentNode != null) {
-            count++;
+            if (currentNode.data.equals(data)) {
+                currentNode.prevNode.nextNode = currentNode.nextNode;
+                if (currentNode.nextNode != null) {
+                    currentNode.nextNode.prevNode = currentNode.prevNode;
+                }
+                size--;
+            }
             currentNode = currentNode.nextNode;
         }
-        return count;
     }
 
     public static void main(String[] args) {
