@@ -7,30 +7,32 @@ public class RemoveEven {
     public static void main(String[] args) {
 
     }
-    static int[] removeEven(int[] array) {
+
+    static int[] removeEven(int[] nums) {
         int count = 0;
-        for (int i : array) {
-            if (i % 2 != 0) {
+        for (int n : nums) {
+            if (n % 2 != 0) {
                 count++;
             }
         }
         int[] result = new int[count];
         int index = 0;
-        for (int i : array) {
-            if (i % 2 != 0) {
-                result[index] = i;
-                index++;
+        for (int n : nums) {
+            if (n % 2 != 0) {
+                result[index++] = n;
             }
         }
         return result;
     }
-    static List<Integer> remove(int[] array) {
+
+    static List<Integer> removeEvenUsingList(int[] nums) {
         List<Integer> result = new ArrayList<>();
-        for (int n : array) {
+        for (int n : nums) {
             if (n % 2 != 0) {
                 result.add(n);
             }
         }
+
         return result;
     }
 }
