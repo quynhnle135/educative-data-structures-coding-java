@@ -48,14 +48,14 @@ public class Demo {
         traverse(reverse(node1));
     }
 
-    public static void traverse(Node head) {
-        while (head != null) {
-            System.out.print(head.data + " -> ");
-            head = head.next;
-        }
-        System.out.print("null");
-        System.out.println();
-    }
+//    public static void traverse(Node head) {
+//        while (head != null) {
+//            System.out.print(head.data + " -> ");
+//            head = head.next;
+//        }
+//        System.out.print("null");
+//        System.out.println();
+//    }
 
 //    public static Node reverseOpt(Node head) {
 //        Node cur = head;
@@ -71,7 +71,7 @@ public class Demo {
 //        return prev;
 //    }
 
-//    public static Node reverse(Node head) {
+    //    public static Node reverse(Node head) {
 //        // 1 -> 2 -> 3 -> 4 -> 5 -> 6
 //        Node cur = head;
 //        Node temp2 = cur.next; // 1 -> 2
@@ -87,15 +87,34 @@ public class Demo {
 //        temp6.next = temp5;
 //        return temp6;
 //    }
+    public static void traverse(Node head) {
+        while (head != null) {
+            System.out.print(head.data + " -> ");
+            head = head.next;
+        }
+        System.out.print("null");
+    }
+
+//    public static Node reverse(Node head) {
+//        Node cur = head;
+//        Node prev = null;
+//        while (cur != null) {
+//            Node nextTemp = cur.next;
+//            cur.next = prev;
+//            prev = cur;
+//            cur = nextTemp;
+//        }
+//        return prev;
+//    }
 
     public static Node reverse(Node head) {
         Node cur = head;
         Node prev = null;
         while (cur != null) {
-            Node nextTemp = cur.next;
+            Node next = cur.next;
             cur.next = prev;
             prev = cur;
-            cur = nextTemp;
+            cur = next;
         }
         return prev;
     }
