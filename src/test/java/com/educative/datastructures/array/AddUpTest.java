@@ -9,7 +9,7 @@ public class AddUpTest {
         int[] arr = {1, 21, 3, 14, 5, 60, 7, 6};
         int value = 27;
         int[] expected = {6, 21};
-        int[] actual = AddUp.findSum(arr, value);
+        int[] actual = AddUp.addUp(arr, value);
         Assertions.assertArrayEquals(expected, actual);
     }
 }
