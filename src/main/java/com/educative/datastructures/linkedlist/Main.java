@@ -12,6 +12,7 @@ public class Main {
         list.printList();
         list.deleteByValue(6);
         list.printList();
+        System.out.println("Length of SLL: " + list.length());
 
         DoublyLinkedList<Integer> doublyList = new DoublyLinkedList<>();
         for (int i = 10; i >= 1; i--) {

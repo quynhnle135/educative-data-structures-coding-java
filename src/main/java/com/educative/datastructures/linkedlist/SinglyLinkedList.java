@@ -111,4 +111,14 @@ public class SinglyLinkedList<T> {
             cur = cur.nextNode;
         }
     }
+
+    public int length() {
+        int count = 0;
+        Node cur = headNode;
+        while (cur != null) {
+            count++;
+            cur = cur.nextNode;
+        }
+        return count;
+    }
 }
