@@ -8,6 +8,7 @@ public class FindMidNode {
         }
         SinglyLinkedList<T>.Node mid = list.headNode;
         SinglyLinkedList<T>.Node cur = list.headNode;
+
         while (mid != null && cur != null && cur.nextNode != null) {
             cur = cur.nextNode.nextNode;
             if (cur != null) {
