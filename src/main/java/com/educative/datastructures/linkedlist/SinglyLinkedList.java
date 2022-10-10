@@ -1,5 +1,6 @@
 package com.educative.datastructures.linkedlist;
 
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.LinkedList;
 
@@ -123,5 +124,27 @@ public class SinglyLinkedList<T> {
             cur = cur.nextNode;
         }
         return count;
+    }
+
+    public Node getHeadNode() {
+        return this.headNode;
+    }
+
+    public void removeDuplicatesWithHashing() {
+        Node current = this.headNode;
+        Node prevNode = this.headNode;
+        HashSet<T> visitedNodes = new HashSet<T>();
+        if (!isEmpty() && current.nextNode != null) {
+            while (current != null) {
+                if (visitedNodes.contains(current.data)) {
+                    prevNode.nextNode = current.nextNode;
+                    current = current.nextNode;
+                } else {
+                    visitedNodes.add(current.data);
+                    prevNode = current;
+                    current = current.nextNode;
+                }
+            }
+        }
     }
 }
