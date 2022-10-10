@@ -130,6 +130,10 @@ public class SinglyLinkedList<T> {
         return this.headNode;
     }
 
+    public int getSize() {
+        return this.size;
+    }
+
     public void removeDuplicatesWithHashing() {
         Node current = this.headNode;
         Node prevNode = this.headNode;
