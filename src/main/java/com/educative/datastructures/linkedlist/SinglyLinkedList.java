@@ -24,13 +24,16 @@ public class SinglyLinkedList<T> {
     }
 
     public void printList() {
+        if (isEmpty()) {
+            System.out.println("List is empty");
+            return;
+        }
         Node cur = headNode;
-        while (cur != null) {
-            System.out.print(cur.data + " -> ");
+        while (cur.nextNode != null) {
+            System.out.print(cur.data.toString() + " -> ");
             cur = cur.nextNode;
         }
-        System.out.print("null");
-        System.out.println();
+        System.out.println(cur.data.toString() + " -> null");
     }
 
     public void insertAtHead(T data) {
