@@ -2,6 +2,7 @@ package com.educative.datastructures.stackandqueue;
 
 public class Stack <V> {
     private int maxSize;
+    private int currentSize;
     private int top;
     private V[] arr;
 
@@ -11,18 +12,21 @@ public class Stack <V> {
         this.maxSize = max_size;
         this.top = -1;
         arr = (V[]) new Object[max_size];
+        this.currentSize = 0;
     }
-
+    public int getCurrentSize() {
+        return currentSize;
+    }
     public int getCapacity() {
         return maxSize;
     }
 
     public boolean isEmpty() {
-        return top == -1;
+        return currentSize == 0;
     }
 
     public boolean isFull() {
-        return top == maxSize - 1;
+        return maxSize == currentSize;
     }
 
     public V top() {
@@ -37,7 +41,8 @@ public class Stack <V> {
             System.out.println("Stack is full");
             return;
         }
-        arr[top++] = value;
+        arr[++top] = value;
+        currentSize++;
     }
 
     public V pop() {
@@ -45,6 +50,7 @@ public class Stack <V> {
             System.out.println("Stack is empty");
             return null;
         }
+        currentSize--;
         return arr[top--];
     }
 }
