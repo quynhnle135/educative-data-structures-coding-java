@@ -1,31 +1,30 @@
 package com.educative.datastructures.stackandqueue;
 
 public class QueueWithStack <V> {
-    Stack<V> stack1;
-    Stack<V> stack2;
-    public QueueWithStack(int maxSize) {
-        stack1 = new Stack<>(maxSize);
-        stack2 = new Stack<>(maxSize);
+   Stack<V> stack1;
+   Stack<V> stack2;
+
+   // Constructor
+    QueueWithStack(int maxSize) {
+       stack1 = new Stack<>(maxSize);
+       stack2 = new Stack<>(maxSize);
     }
 
-    public boolean isEmpty() {
-        return stack1.isEmpty();
-    }
-
+    // Enqueue
     public void enqueue(V value) {
         stack1.push(value);
     }
 
+    // Dequeue
     public V dequeue() {
         while (!stack1.isEmpty()) {
             stack2.push(stack1.pop());
         }
-
-        V result = stack2.pop();
+        V topValue = stack2.pop();
         while (!stack2.isEmpty()) {
             stack1.push(stack2.pop());
         }
-        return result;
+        return topValue;
     }
 
     public static void main(String[] args) {
