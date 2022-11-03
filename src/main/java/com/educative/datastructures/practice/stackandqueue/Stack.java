@@ -45,7 +45,7 @@ public class Stack <V>{
             System.out.println("Stack is full!");
             return;
         }
-        arr[top++] = value;
+        arr[++top] = value;
         currentSize++;
     }
 
