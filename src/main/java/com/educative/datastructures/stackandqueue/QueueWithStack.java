@@ -10,6 +10,11 @@ public class QueueWithStack <V> {
        stack2 = new Stack<>(maxSize);
     }
 
+    // Check if stack is empty
+    public boolean isEmpty() {
+        return (stack1.isEmpty() && stack2.isEmpty());
+    }
+
     // Enqueue
     public void enqueue(V value) {
         stack1.push(value);
@@ -17,14 +22,16 @@ public class QueueWithStack <V> {
 
     // Dequeue
     public V dequeue() {
-        while (!stack1.isEmpty()) {
-            stack2.push(stack1.pop());
+        if (isEmpty()) {
+            return null;
+        } else if (stack2.isEmpty()) {
+            while (!stack1.isEmpty()) {
+                stack2.push(stack1.pop());
+            }
+            return stack2.pop();
+        } else {
+            return stack2.pop();
         }
-        V topValue = stack2.pop();
-        while (!stack2.isEmpty()) {
-            stack1.push(stack2.pop());
-        }
-        return topValue;
     }
 
     public static void main(String[] args) {
