@@ -9,7 +9,7 @@ public class Queue <V> {
 
     // Constructor
     @SuppressWarnings("unchecked")
-    Queue(int maxSize) {
+    public Queue(int maxSize) {
         this.front = 0;
         this.back = -1;
         this.maxSize = maxSize;
