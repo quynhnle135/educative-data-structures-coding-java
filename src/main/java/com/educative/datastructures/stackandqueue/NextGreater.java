@@ -2,22 +2,22 @@ package com.educative.datastructures.stackandqueue;
 
 public class NextGreater {
     public static int[] findGreater(int[] arr) {
+        int[] res = new int[arr.length];
         Stack<Integer> stack = new Stack<>(arr.length);
-        int[] result = new int[arr.length];
-        for (int i = arr.length - 1; i >= 0; i--) {
+        for (int i = arr.length - 1; i >=0 ; i--) {
             if (!stack.isEmpty()) {
                 while (!stack.isEmpty() && stack.top() <= arr[i]) {
                     stack.pop();
                 }
             }
             if (stack.isEmpty()) {
-                result[i] = -1;
+                res[i] = -1;
             } else {
-                result[i] = stack.top();
+                res[i] = stack.top();
             }
             stack.push(arr[i]);
         }
-        return result;
+        return res;
     }
 
     public static void main(String[] args) {
