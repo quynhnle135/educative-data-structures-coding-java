@@ -63,7 +63,7 @@ public class BinarySearchTree {
         }
         return currentNode;
     }
-    public boolean recursiveAdd(int value) {
+    public boolean add(int value) {
         root = recursiveInsert(root, value);
         return true;
     }
