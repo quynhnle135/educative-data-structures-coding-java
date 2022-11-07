@@ -1,10 +1,9 @@
 package com.educative.datastructures.tree;
 
 public class Node {
-    private int data;
-    private Node leftChild;
-    private Node rightChild;
-
+    public int data;
+    public Node leftChild;
+    public Node rightChild;
     // Constructor
     public Node(int value) {
         this.data = value;
@@ -37,5 +36,4 @@ public class Node {
     public void setRightChild(Node rightChild) {
         this.rightChild = rightChild;
     }
-
 }
