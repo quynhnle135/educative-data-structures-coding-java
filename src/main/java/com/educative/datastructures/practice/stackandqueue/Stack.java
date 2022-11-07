@@ -48,5 +48,7 @@ public class Stack <V>{
         return array[top--];
     }
 
-
+    public V top() {
+        return array[top];
+    }
 }

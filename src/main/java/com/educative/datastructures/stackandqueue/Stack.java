@@ -41,15 +41,17 @@ public class Stack<V> {
 
     //returns the value at top of Stack
     public V top() {
-        if (isEmpty())
+        if (isEmpty()) {
+            System.out.println("Stack is empty");
             return null;
+        }
         return array[top];
     }
 
     //inserts a value to the top of Stack
     public void push(V value) {
         if (isFull()) {
-            System.err.println("Stack is Full!");
+            System.out.println("Stack is full!");
             return;
         }
         array[++top] = value; //increments the top and adds value to updated top
@@ -58,8 +60,10 @@ public class Stack<V> {
 
     //removes a value from top of Stack and returns
     public V pop() {
-        if (isEmpty())
+        if (isEmpty()) {
+            System.out.println("Stack is empty!");
             return null;
+        }
         currentSize--;
         return array[top--]; //returns value and top and decrements the top
     }
