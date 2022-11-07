@@ -74,4 +74,21 @@ public class BinarySearchTree {
         printTree(current.getLeftChild());
         printTree(current.getRightChild());
     }
+
+    // Search
+    public Node search(int value) {
+        if (isEmpty()) return null;
+        Node currentNode = this.root;
+
+        while (currentNode != null) {
+            if (currentNode.getData() == value) return currentNode;
+            if (value < currentNode.getData()) {
+                currentNode = currentNode.getLeftChild();
+            } else {
+                currentNode = currentNode.getRightChild();
+            }
+        }
+        System.out.println(value + " cannot be found in the tree!");
+        return null;
+    }
 }
