@@ -1,13 +1,12 @@
 package com.educative.datastructures.graphs;
 
-import com.educative.datastructures.linkedlist.DoublyLinkedList;
+import com.educative.datastructures.practice.graphs.DoubleLinkedList;
 
 public class Graph {
     int vertices;
     DoublyLinkedList<Integer> adjacencyList[];
 
     @SuppressWarnings("unchecked")
-    //Constructor
     public Graph(int vertices) {
         this.vertices = vertices;
         adjacencyList = new DoublyLinkedList[vertices];
@@ -19,24 +18,25 @@ public class Graph {
 
     public void addEdge(int source, int destination) {
         if (source < vertices && destination < vertices) {
-            this.adjacencyList[source].insertAtEnd(destination);
+            adjacencyList[source].insertAtEnd(destination);
         }
     }
 
     public void printGraph() {
-        System.out.println("Adjacency List of Directed Graph: ");
+        System.out.println("Adjacency List Directed Graph");
         for (int i = 0; i < vertices; i++) {
             if (adjacencyList[i] != null) {
-                System.out.print("|" + i + "| => ");
+                System.out.print("|" + i + "| =>");
                 DoublyLinkedList<Integer>.Node temp = adjacencyList[i].getHeadNode();
                 while (temp != null) {
-                    System.out.print("[" + temp.data + "] -> ");
+                    System.out.print("[" + temp.data + "] ->");
                     temp = temp.nextNode;
                 }
                 System.out.println("null");
             } else {
-                System.out.println("|" + i + "| => "+ "null");
+                System.out.println("|" + i + "| => null");
             }
         }
     }
+
 }
