@@ -114,4 +114,79 @@ public class BinarySearchTree {
         printTree(current.getLeftChild());
         printTree(current.getRightChild());
     }
+
+    // Delete node in tree
+    public boolean delete(int value, Node currentNode) {
+        if (root == null) return false;
+
+        Node parent = null;
+        // Set parent for current node and find required node
+        while (currentNode != null && currentNode.getData() != value) {
+            parent = currentNode;
+            if (currentNode.getData() > value) {
+                currentNode = currentNode.getLeftChild();
+            } else {
+                currentNode = currentNode.getRightChild();
+            }
+        }
+        // Node is found!
+        if (currentNode == null) {
+            return false;
+        }
+        // Case 1: Node is leaf node
+        else if (currentNode.getLeftChild() == null && currentNode.getRightChild() == null) {
+            // if delete node is root -> set root == null
+            if (root.getData() == currentNode.getData()) {
+                setRoot(null);
+                return true;
+            } else if (currentNode.getData() < parent.getData()) {
+                parent.setLeftChild(null);
+                return true;
+            } else {
+                parent.setRightChild(null);
+                return true;
+            }
+            // Case 2a: Node has one left child
+        } else if (currentNode.getRightChild() == null) {
+            // if delete node is root -> set root = left child
+            if (root.getData() == currentNode.getData()) {
+                setRoot(currentNode.getLeftChild());
+                return true;
+            } else if (currentNode.getData() < parent.getData()) {
+                parent.setLeftChild(currentNode.getLeftChild());
+                return true;
+            } else {
+                parent.setRightChild(currentNode.getLeftChild());
+                return true;
+            }
+        } else if (currentNode.getLeftChild() == null) {
+            if (root.getData() == currentNode.getData()) {
+                setRoot(currentNode.getLeftChild());
+                return true;
+            } else if (currentNode.getData() < parent.getData()) {
+                parent.setLeftChild(currentNode.getRightChild());
+                return true;
+            } else {
+                parent.setRightChild(currentNode.getRightChild());
+                return true;
+            }
+        } else {
+            Node leastNode = findLeastNode(currentNode.getRightChild());
+            int temp = leastNode.getData();
+            delete(temp, root);
+            currentNode.setData(temp);
+            return true;
+        }
+    }
+    private Node findLeastNode(Node currentNode) {
+
+        Node temp = currentNode;
+
+        while (temp.getLeftChild() != null) {
+            temp = temp.getLeftChild();
+        }
+
+        return temp;
+
+    }
 }
