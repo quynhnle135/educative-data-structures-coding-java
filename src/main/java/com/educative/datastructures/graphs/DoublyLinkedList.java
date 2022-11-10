@@ -18,88 +18,55 @@ public class DoublyLinkedList <T> {
     }
 
     public boolean isEmpty() {
-        if (headNode == null && tailNode == null) {
-            return true;
-        }
+        if (tailNode == null && headNode == null) return true;
         return false;
     }
 
     public Node getHeadNode() {
-        return headNode;
+        return this.headNode;
     }
 
     public Node getTailNode() {
-        return tailNode;
+        return this.tailNode;
     }
 
     public int getSize() {
-        return size;
+        return this.size;
     }
 
     public void insertAtHead(T data) {
         Node newNode = new Node();
         newNode.data = data;
-        newNode.nextNode = this.headNode;
+        newNode.nextNode = headNode;
         newNode.prevNode = null;
         if (headNode != null) {
             headNode.prevNode = newNode;
+            newNode.nextNode = headNode;
         } else {
             tailNode = newNode;
         }
-        this.headNode = newNode;
+        headNode = newNode;
         size++;
     }
 
     public void insertAtEnd(T data) {
-        if (isEmpty()) {
+        if(isEmpty()) {
             insertAtHead(data);
+            return;
         }
         Node newNode = new Node();
         newNode.data = data;
-        newNode.nextNode = null;
-        newNode.prevNode = tailNode;
         tailNode.nextNode = newNode;
+        newNode.prevNode = tailNode;
         tailNode = newNode;
         size++;
     }
 
-    public void printList() {
-        if (isEmpty()) {
-            System.out.println("List is empty");
-            return;
-        }
-
-        Node temp = headNode;
-        System.out.println("null" + " <- ");
-        while (temp.nextNode != null) {
-            System.out.println(temp.data.toString() + " <-> ");
-            temp = temp.nextNode;
-        }
-        System.out.print(temp.data.toString() + " -> null");
-        System.out.println();
-    }
-
-    public void printListReverse() {
-        if (isEmpty()) {
-            System.out.println("List is empty");
-            return;
-        }
-
-        Node temp = tailNode;
-        System.out.println("List: null <- ");
-        while (temp.prevNode != null) {
-            System.out.print(temp.data.toString() + " <-> ");
-            temp = temp.prevNode;
-        }
-        System.out.print(temp.data.toString() + " -> null");
-        System.out.println();
-    }
-
     public void deleteAtHead() {
         if (isEmpty()) {
+            System.out.println("List is empty!");
             return;
         }
-
         headNode = headNode.nextNode;
         if (headNode == null) {
             tailNode = null;
@@ -109,11 +76,11 @@ public class DoublyLinkedList <T> {
         size--;
     }
 
-    public void deleteAtEnd() {
+    public void deleteAtTail() {
         if (isEmpty()) {
+            System.out.println("List is emtpy");
             return;
         }
-
         tailNode = tailNode.prevNode;
         if (tailNode == null) {
             headNode = null;
@@ -121,5 +88,20 @@ public class DoublyLinkedList <T> {
             tailNode.nextNode = null;
         }
         size--;
+    }
+
+    public void printList() {
+        if (isEmpty()) {
+            System.out.println("List is empty!");
+            return;
+        }
+        Node curNode = headNode;
+        System.out.print("Doubly LinkedList: <- null -> ");
+        while (curNode.nextNode != null) {
+            System.out.print(curNode.data + " -> ");
+            curNode = curNode.nextNode;
+        }
+        System.out.print(curNode.data + " -> null");
+        System.out.println();
     }
 }
