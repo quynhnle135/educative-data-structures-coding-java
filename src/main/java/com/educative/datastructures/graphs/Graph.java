@@ -23,7 +23,7 @@ public class Graph {
 
     public void printGraph() {
         System.out.println("Adjacency List Directed Graph");
-        for (int i = 0; i < vertices; i++) {
+        for (int i = 1; i < vertices; i++) {
             if (adjacencyList[i] != null) {
                 System.out.print("|" + i + "| => ");
                 DoublyLinkedList<Integer>.Node temp = adjacencyList[i].getHeadNode();
