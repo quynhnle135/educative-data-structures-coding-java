@@ -47,7 +47,10 @@ public class Stack<V> {
             System.out.println("Stack is empty!!!");
             return null;
         }
-
         return array[top--];
+    }
+
+    public V peek() {
+        return array[top];
     }
 }
